@@ -66,9 +66,13 @@ class RobotTaxonomyAgent:
         print(f"✅ Classified {summary['total_robots']} robots")
         print("📊 Classification Summary:")
         print(f"   Domains: {summary['domain_distribution']}")
-        print(f"   Mobility: {summary['mobility_distribution']}")
-        print(f"   Autonomy: {summary['autonomy_distribution']}")
-        print(f"   Sizes: {summary['size_distribution']}")
+        print(f"   Kingdoms: {summary['kingdom_distribution']}")
+        print(f"   Phyla: {summary['phylum_distribution']}")
+        print(f"   Classes: {summary['class_distribution']}")
+        print(f"   Orders: {summary['order_distribution']}")
+        print(f"   Families: {summary['family_distribution']}")
+        print(f"   Genera: {summary['genus_distribution']}")
+        print(f"   Species: {summary['species_distribution']}")
         
         # Step 3: Visualization
         print("\n🌳 Step 3: Creating robot tree of life visualization...")
@@ -78,16 +82,17 @@ class RobotTaxonomyAgent:
             print("\n🚀 Launching interactive dashboard...")
             print("📱 Open your browser to http://localhost:8050")
             app = self.visualizer.create_dashboard()
-            app.run_server(debug=False, port=8050)
+            app.run(debug=False, port=8050)
         else:
-            # Create static visualizations
-            tree_fig = self.visualizer.create_tree_visualization()
-            tree_fig.write_html("./data/robot_tree.html")
-            print("✅ Tree visualization saved to data/robot_tree.html")
-            
-            cluster_fig = self.visualizer.create_cluster_visualization()
-            cluster_fig.write_html("./data/robot_clusters.html")
-            print("✅ Cluster visualization saved to data/robot_clusters.html")
+            # Create PNG visualizations
+            self.visualizer.save_radial_tree_as_png()
+            self.visualizer.save_phylogenetic_tree_as_png()
+            self.visualizer.save_dendrogram_as_png()
+            self.visualizer.save_cluster_as_png()
+            self.visualizer.save_taxonomy_bar_charts_as_png()
+            self.visualizer.save_simplified_tree_as_png()
+            self.visualizer.save_taxonomy_summary_as_png()
+            print("✅ PNG visualizations saved to data/")
         
         print("\n🎉 Robot Taxonomy Agent completed successfully!")
     
@@ -121,9 +126,13 @@ class RobotTaxonomyAgent:
             print(f"✅ Classified {summary['total_robots']} robots")
             print("📊 Classification Summary:")
             print(f"   Domains: {summary['domain_distribution']}")
-            print(f"   Mobility: {summary['mobility_distribution']}")
-            print(f"   Autonomy: {summary['autonomy_distribution']}")
-            print(f"   Sizes: {summary['size_distribution']}")
+            print(f"   Kingdoms: {summary['kingdom_distribution']}")
+            print(f"   Phyla: {summary['phylum_distribution']}")
+            print(f"   Classes: {summary['class_distribution']}")
+            print(f"   Orders: {summary['order_distribution']}")
+            print(f"   Families: {summary['family_distribution']}")
+            print(f"   Genera: {summary['genus_distribution']}")
+            print(f"   Species: {summary['species_distribution']}")
             
         except FileNotFoundError:
             print("❌ No robot data found. Please run the scraper first.")
@@ -140,15 +149,16 @@ class RobotTaxonomyAgent:
                 print("🚀 Launching interactive dashboard...")
                 print("📱 Open your browser to http://localhost:8050")
                 app = self.visualizer.create_dashboard()
-                app.run_server(debug=False, port=8050)
+                app.run(debug=False, port=8050)
             else:
-                tree_fig = self.visualizer.create_tree_visualization()
-                tree_fig.write_html("./data/robot_tree.html")
-                print("✅ Tree visualization saved to data/robot_tree.html")
-                
-                cluster_fig = self.visualizer.create_cluster_visualization()
-                cluster_fig.write_html("./data/robot_clusters.html")
-                print("✅ Cluster visualization saved to data/robot_clusters.html")
+                self.visualizer.save_radial_tree_as_png()
+                self.visualizer.save_phylogenetic_tree_as_png()
+                self.visualizer.save_dendrogram_as_png()
+                self.visualizer.save_cluster_as_png()
+                self.visualizer.save_taxonomy_bar_charts_as_png()
+                self.visualizer.save_simplified_tree_as_png()
+                self.visualizer.save_taxonomy_summary_as_png()
+                print("✅ PNG visualizations saved to data/")
                 
         except FileNotFoundError:
             print("❌ No classified robot data found. Please run the classifier first.")

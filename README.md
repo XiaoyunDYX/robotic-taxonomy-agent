@@ -1,144 +1,132 @@
 # Robot Taxonomy Agent 🤖
 
-A comprehensive system that scours the internet for robot examples, classifies them according to a hierarchical taxonomy, and displays the information graphically as a "tree of life" for robots.
+A comprehensive system that discovers, classifies, and visualizes robots using a hierarchical taxonomy inspired by biological classification. This project is part of the research initiative "Re-designing the Tree of Robotic Life" at Frontiers in Robotics and AI.
+
+**Author**: Prof. Adam A. Stokes
+
+## Research Context
+
+This project contributes to the [Frontiers Research Topic: "Re-designing the Tree of Robotic Life"](https://www.frontiersin.org/research-topics/64890/re-designing-the-tree-of-robotic-life), which explores the application of biological taxonomy principles to robotic systems. The goal is to create a comprehensive classification system that reveals evolutionary relationships between different types of robots, similar to the biological tree of life.
 
 ## Features
 
-- **🌐 Web Scraping**: Automatically searches Wikipedia, manufacturer websites, and robot databases
-- **🏷️ Intelligent Classification**: Categorizes robots by Domain, Mobility, Autonomy, and Size
-- **🌳 Interactive Visualization**: Creates a phylogenetic-style tree showing robot relationships
+- **🌐 Web Scraping**: Automatically searches Wikipedia and manufacturer websites
+- **🏷️ Hierarchical Classification**: 8-level taxonomy (Domain → Kingdom → Phylum → Class → Order → Family → Genus → Species)
+- **🌳 Multiple Visualization Types**: 
+  - **Tree of Life Visualizations**: Radial, phylogenetic, and hierarchical dendrogram views
+  - **Statistical Analysis**: Bar charts showing robot distribution across taxonomic levels
+  - **Simplified Trees**: Clean taxonomic structure without individual robot nodes
+  - **Summary Charts**: Top categories at each taxonomic level
 - **📊 Dashboard**: Interactive web interface for exploring robot taxonomy
-- **🤖 Machine Learning**: Uses clustering to discover natural robot groupings
+- **🤖 Machine Learning**: Clustering to discover natural robot groupings
+- **📈 PNG Export**: High-quality static visualizations for research and presentations
 
 ## Taxonomy Structure
 
-The system classifies robots according to four main dimensions:
+The system uses an 8-level hierarchical taxonomy:
 
-### Domain
-- **Industrial**: Manufacturing, Logistics, Construction
-- **Service**: Healthcare, Domestic, Commercial
-- **Research**: Exploration, Laboratory, Educational
-- **Military**: Combat, Support, Surveillance
+| Level | Description | Examples |
+|-------|-------------|----------|
+| **Domain** | Operational environment | Physical, Virtual, Hybrid |
+| **Kingdom** | Application domain | Industrial, Medical, Research, Military |
+| **Phylum** | Morphological structure | Manipulator, Mobile, Humanoid, Soft |
+| **Class** | Locomotion mechanism | Static, Wheeled, Legged, Flying |
+| **Order** | Autonomy level | Teleoperated, Semi_Autonomous, Autonomous |
+| **Family** | Sensing modality | Vision_Based, LiDAR_Based, Tactile_Based |
+| **Genus** | Actuation system | Electric, Hydraulic, Pneumatic, Smart_Materials |
+| **Species** | Application specialization | Assembly, Surgery, Exploration, Security |
 
-### Mobility
-- **Stationary**: Fixed, Mounted, Permanent
-- **Mobile**: 
-  - Wheeled: Differential Drive, Omnidirectional, Tracked
-  - Legged: Bipedal, Quadrupedal, Hexapod
-  - Flying: Fixed-wing, Rotary-wing, Multi-rotor
-  - Swimming: Underwater, Surface, Hybrid
+## Quick Start
 
-### Autonomy
-- **Teleoperated**: Remote Control, Human-in-the-loop
-- **Semi-autonomous**: Supervised, Assisted
-- **Autonomous**: Fully Autonomous, AI-driven, Self-learning
-
-### Size
-- **Nano**: Microscopic, Molecular
-- **Micro**: Millimeter, Centimeter
-- **Small**: Handheld, Portable
-- **Medium**: Human-sized, Table-top
-- **Large**: Industrial, Vehicle-sized
-- **Macro**: Building-sized, Infrastructure
-
-## Installation
-
-1. **Clone the repository**:
-```bash
-git clone <repository-url>
-cd robot-taxonomy-agent
-```
-
-2. **Install dependencies**:
+1. **Install dependencies**:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. **Verify installation**:
-```bash
-python src/main.py --help
-```
-
-## Usage
-
-### Full Pipeline (Recommended)
-
-Run the complete system - scraping, classification, and visualization:
-
+2. **Run the full pipeline**:
 ```bash
 python src/main.py --mode full
 ```
 
-This will:
-1. Scrape robot data from the internet
-2. Classify robots according to the taxonomy
-3. Launch an interactive dashboard at http://localhost:8050
+3. **Open dashboard**: http://localhost:8050
+
+## Usage
+
+### Full Pipeline (Recommended)
+```bash
+python src/main.py --mode full
+```
 
 ### Individual Components
-
-#### Web Scraping Only
 ```bash
+# Scraping only
 python src/main.py --mode scraper
-```
 
-#### Classification Only (requires scraped data)
-```bash
+# Classification only (requires scraped data)
 python src/main.py --mode classifier
-```
 
-#### Visualization Only (requires classified data)
-```bash
+# Visualization only (requires classified data)
 python src/main.py --mode visualizer
 ```
 
 ### Custom Search Terms
-
-Specify custom search terms for scraping:
-
 ```bash
-python src/main.py --mode scraper --search-terms "space robots" "underwater robots" "medical robots"
+python src/main.py --mode scraper --search-terms "space robots" "medical robots"
 ```
 
 ### Static Visualizations
-
-Generate static HTML visualizations without launching the dashboard:
-
 ```bash
 python src/main.py --mode full --no-dashboard
 ```
+
+This generates 7 PNG visualizations:
+- `robot_radial_tree.png` - Radial tree of life view
+- `robot_phylogenetic_tree.png` - Phylogenetic-style tree
+- `robot_dendrogram.png` - Hierarchical dendrogram
+- `robot_clusters.png` - Machine learning clusters
+- `robot_taxonomy_bars.png` - Statistical bar charts
+- `robot_simplified_tree.png` - Clean taxonomic structure
+- `robot_taxonomy_summary.png` - Top categories summary
 
 ## Project Structure
 
 ```
 robot-taxonomy-agent/
-├── src/
-│   └── main.py                 # Main application orchestrator
-├── web_scraper/
-│   └── robot_scraper.py        # Web scraping functionality
-├── classifier/
-│   └── robot_classifier.py     # Taxonomy classification
-├── visualizer/
-│   └── robot_tree_visualizer.py # Visualization and dashboard
-├── data/
-│   ├── robots_data.json        # Raw scraped data
-│   └── classified_robots.json  # Classified robot data
-├── requirements.txt            # Python dependencies
-└── README.md                  # This file
+├── src/main.py                    # Main application
+├── web_scraper/robot_scraper.py   # Web scraping
+├── classifier/robot_classifier.py  # Taxonomy classification
+├── visualizer/robot_tree_visualizer.py # Visualization
+├── data/                          # Generated data files
+├── Robotic taxonomy.md            # Taxonomy definition
+└── requirements.txt               # Dependencies
 ```
+
+## Visualization Types
+
+### Tree of Life Visualizations
+- **Radial Tree**: Circular layout similar to biological tree of life
+- **Phylogenetic Tree**: Evolutionary-style branching showing robot relationships
+- **Hierarchical Dendrogram**: Dendrogram-style layout with clear taxonomic levels
+
+### Statistical Analysis
+- **Taxonomy Bar Charts**: 8 subplots showing robot distribution across each taxonomic level
+- **Summary Charts**: Horizontal bar charts showing top categories at each level
+- **Cluster Analysis**: Machine learning-based robot groupings
+
+### Simplified Views
+- **Simplified Tree**: Clean taxonomic structure without individual robot nodes
+- **Statistical Overview**: Easy-to-read distributions and percentages
+- **Research-Ready**: Perfect for academic presentations and papers
 
 ## Dashboard Features
 
-The interactive dashboard provides:
-
-- **Tree Visualization**: Hierarchical view of robot relationships
-- **Filtering**: Filter robots by domain, mobility, autonomy
+- **Interactive Tree Visualization**: Hierarchical view of robot relationships
+- **Multi-level Filtering**: Filter by any of the 8 taxonomic levels
 - **Statistics**: Summary of classification results
 - **Robot Details**: Click on robots to see detailed information
-- **Cluster Analysis**: Machine learning-based robot groupings
+- **Real-time Analysis**: Dynamic exploration of the robot taxonomy
 
 ## Data Sources
-
-The system scrapes data from:
 
 - **Wikipedia**: Robot categories and articles
 - **Manufacturer Websites**: ABB, FANUC, KUKA, Yaskawa
@@ -146,130 +134,67 @@ The system scrapes data from:
 
 ## Customization
 
-### Adding New Robot Categories
+### Modify Taxonomy
+Edit `Robotic taxonomy.md` to update the hierarchical structure.
 
-Edit `classifier/robot_classifier.py` to modify the taxonomy structure:
+### Add Data Sources
+Modify `web_scraper/robot_scraper.py` to add new scraping sources.
 
-```python
-self.taxonomy = {
-    "Domain": {
-        "Your New Domain": {
-            "Subcategory": ["Specific Types"]
-        }
-    }
-    # ... rest of taxonomy
-}
-```
+### Custom Visualizations
+Edit `visualizer/robot_tree_visualizer.py` to modify visual representations.
 
-### Custom Search Sources
-
-Modify `web_scraper/robot_scraper.py` to add new data sources:
-
-```python
-def _search_custom_source(self, search_term: str):
-    # Add your custom scraping logic here
-    pass
-```
-
-### Visualization Customization
-
-Edit `visualizer/robot_tree_visualizer.py` to modify the visual representation:
-
-```python
-def create_custom_visualization(self):
-    # Add your custom visualization logic here
-    pass
-```
+### Visualization Types
+The system supports multiple visualization approaches:
+- **Tree of Life**: For evolutionary-style relationships
+- **Statistical**: For data analysis and distributions
+- **Simplified**: For clean, presentation-ready views
+- **Interactive**: For exploration and discovery
 
 ## Troubleshooting
 
 ### Common Issues
 
-1. **Import Errors**: Make sure all dependencies are installed
+1. **Import Errors**: Install dependencies
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **No Data Found**: Run the scraper first
+2. **No Data Found**: Run scraper first
    ```bash
    python src/main.py --mode scraper
    ```
 
-3. **Dashboard Not Loading**: Check if port 8050 is available
+3. **Dashboard Issues**: Use static mode
    ```bash
-   python src/main.py --mode visualizer --no-dashboard
+   python src/main.py --mode full --no-dashboard
    ```
 
-4. **Memory Issues**: Reduce the number of search terms or robots processed
-
-### Performance Tips
-
-- Use specific search terms to reduce scraping time
-- Run components separately for debugging
-- Use `--no-dashboard` for faster processing
-- Limit the number of robots processed for testing
+4. **Crowded Visualizations**: Use simplified views
+   - `robot_taxonomy_bars.png` - Statistical distributions
+   - `robot_simplified_tree.png` - Clean structure
+   - `robot_taxonomy_summary.png` - Top categories
 
 ## Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+4. Submit a pull request
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+MIT License - see LICENSE file for details.
 
-## Acknowledgments
+## Research Applications
 
-- Inspired by biological taxonomy and phylogenetic trees
-- Uses data from Wikipedia and various robot manufacturers
-- Built with Python, Dash, Plotly, and NetworkX
+This system is designed for research in robotic taxonomy and classification:
+
+- **Academic Presentations**: Use simplified trees and statistical charts
+- **Research Papers**: High-quality PNG exports for publication
+- **Data Analysis**: Comprehensive statistical breakdowns
+- **Comparative Studies**: Multiple visualization types for different perspectives
+- **Educational Content**: Clear, understandable visualizations
 
 ---
 
 **Happy Robot Exploring! 🤖🌳** 
-
-## Code Explanation
-
-This is a **Robot Taxonomy Agent** - a comprehensive system that automatically discovers, classifies, and visualizes robots from the internet. Here's how it works:
-
-### 🏗️ **Architecture Overview**
-
-The system has three main components:
-
-1. **🌐 Web Scraper** (`web_scraper/robot_scraper.py`)
-   - Searches Wikipedia and manufacturer websites for robot information
-   - Extracts robot names, descriptions, specifications, and metadata
-   - Saves raw data to JSON files
-
-2. **🏷️ Classifier** (`classifier/robot_classifier.py`)
-   - Uses a hierarchical taxonomy to categorize robots
-   - Classifies by: Domain, Mobility, Autonomy, and Size
-   - Applies machine learning clustering to find natural groupings
-   - Uses keyword matching and TF-IDF analysis
-
-3. **🌳 Visualizer** (`visualizer/robot_tree_visualizer.py`)
-   - Creates interactive "tree of life" style visualizations
-   - Builds a Dash web dashboard for exploration
-   - Generates phylogenetic-style trees showing robot relationships
-
-### 🔄 **Pipeline Flow**
-
-```
-Internet → Scraper → Raw Data → Classifier → Classified Data → Visualizer → Dashboard
-```
-
-### 📊 **Taxonomy Structure**
-
-The system uses a sophisticated 4-dimensional classification:
-
-- **Domain**: Industrial, Service, Research, Military
-- **Mobility**: Stationary, Mobile (Wheeled, Legged, Flying, Swimming)
-- **Autonomy**: Teleoperated, Semi-autonomous, Autonomous
-- **Size**: Nano, Micro, Small, Medium, Large, Macro
-
-##  How to Run It
-
-### **Step 1: Install Dependencies** 
